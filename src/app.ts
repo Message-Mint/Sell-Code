@@ -14,7 +14,7 @@ const app: Application = express();
 
 // CORS configuration
 const corsOptions = {
-    origin: process.env.CORS_ORIGIN || '*', // Use environment variable or default to '*'
+    origin: process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : ['*'], // Use environment variable or default to '*'
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 };

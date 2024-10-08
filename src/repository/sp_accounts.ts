@@ -35,15 +35,6 @@ export class SpAccountRepository {
         return item || null;
     }
 
-    async findByUsername(username: string): Promise<SpAccount | null> {
-        const [item] = await this.db.query<SpAccount[]>('SELECT * FROM sp_accounts WHERE username = ?', [username]);
-        return item || null;
-    }
-
-    async findBySocialNetwork(social_network: string): Promise<SpAccount[]> {
-        return this.db.query<SpAccount[]>('SELECT * FROM sp_accounts WHERE social_network = ?', [social_network]);
-    }
-
     async findAll(): Promise<SpAccount[]> {
         return this.db.query<SpAccount[]>('SELECT * FROM sp_accounts');
     }
@@ -65,33 +56,13 @@ export class SpAccountRepository {
         await this.db.query('UPDATE sp_accounts SET ? WHERE id = ?', [item, id]);
     }
 
-    async delete(token: string): Promise<void> {
-        await this.db.query('DELETE FROM sp_accounts WHERE token = ?', [token]);
-    }
-
-    async deleteByTeamId(team_id: number): Promise<void> {
-        await this.db.query('DELETE FROM sp_accounts WHERE team_id = ?', [team_id]);
-    }
-
     async countByStatus(status: number): Promise<number> {
         const [result] = await this.db.query<{ count: number }[]>('SELECT COUNT(*) as count FROM sp_accounts WHERE status = ?', [status]);
         return result.count;
     }
 
-    async updateStatus(id: number, status: number): Promise<void> {
-        await this.db.query('UPDATE sp_accounts SET status = ? WHERE id = ?', [status, id]);
-    }
-
-    async updateToken(id: number, token: string): Promise<void> {
-        await this.db.query('UPDATE sp_accounts SET token = ? WHERE id = ?', [token, id]);
-    }
-
     async updateViaToken(token: string, item: Partial<Omit<SpAccount, "constructor">>): Promise<void> {
         await this.db.query('UPDATE sp_accounts SET ? WHERE token = ?', [item, token]);
-    }
-
-    async findByCategory(category: string): Promise<SpAccount[]> {
-        return this.db.query<SpAccount[]>('SELECT * FROM sp_accounts WHERE category = ?', [category]);
     }
 
     async findByStatus(status: number): Promise<SpAccount[]> {
