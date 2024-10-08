@@ -1,0 +1,43 @@
+{
+  "scripts": {
+    "start": "node dist/app.js",
+    "dev": "npm run lint && nodemon --exec ts-node src/server.ts --ignore sessions/",
+    "build": "eslint . && rimraf dist && tsc",
+    "lint": "eslint .",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@hapi/boom": "^10.0.1",
+    "@types/cors": "^2.8.17",
+    "@types/node-cron": "^3.0.11",
+    "@types/qrcode": "^1.5.5",
+    "@whiskeysockets/baileys": "^6.7.8",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "express-validation": "^4.1.1",
+    "jimp": "^0.16.13",
+    "moment": "^2.30.1",
+    "mysql2": "^3.11.3",
+    "node-cache": "^5.1.2",
+    "node-cron": "^3.0.3",
+    "pino": "^7.0.0",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.32.6",
+    "signale": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.7.4",
+    "@types/signale": "^1.4.7",
+    "@typescript-eslint/eslint-plugin": "^8.8.0",
+    "@typescript-eslint/parser": "^8.8.0",
+    "concurrently": "^9.0.1",
+    "eslint": "^9.11.1",
+    "eslint-define-config": "^2.1.0",
+    "nodemon": "^3.1.7",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.2"
+  }
+}
